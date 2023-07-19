@@ -16,22 +16,29 @@ export default {
     }
   },
   methods: {
-    getPost() {
-      axios.get(this.apiUrl + "posts").then(response => {
-        console.log(response.data.results);
-        this.posts = response.data.results;
-      })
-    }
+
   },
   mounted() {
   }
 }
 </script>
 <template>
-  <AppHeader />
-  <AppMain />
-  <AppFooter />
+
+  <header>
+    <AppHeader />
+  </header>
+
+  <router-view></router-view>
+
+  <main>
+  </main>
+
+  <footer>
+    <AppFooter />
+  </footer>
+
 </template>
+
 <style scoped>
 
 </style>
