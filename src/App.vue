@@ -30,9 +30,6 @@ export default {
 
   <router-view></router-view>
 
-  <main>
-  </main>
-
   <footer>
     <AppFooter />
   </footer>

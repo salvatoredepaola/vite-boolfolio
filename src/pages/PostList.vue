@@ -17,7 +17,13 @@ export default {
 <template>
 
     <section>
-        <h1>Lista Posts</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Lista Posts</h1>
+                </div>
+            </div>
+        </div>
         <AppMain />
     </section>
 

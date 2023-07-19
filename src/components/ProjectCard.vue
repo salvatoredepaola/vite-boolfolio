@@ -35,7 +35,7 @@ export default {
 
 <template>
 
-<div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+<div class="row row-cols-1 row-cols-md-2 g-4 mb-4 ">
     <div v-for="post in posts" class="col">
         <div class="card h-100">
             <!-- <img src="..." class="card-img-top" alt="..."> -->

@@ -19,6 +19,7 @@ export default {
     },
     methods: {
         getPosts() {
+
             this.loading = true;
             axios.get(this.apiUrl + "posts").then(response => {
                 // console.log(response.data.results);
@@ -32,7 +33,9 @@ export default {
                 // this.loadingError = "errore nel caricamento dei dati";
                 this.loadingError = err.message;
                 // console.log(err)
+                this.$router.push({ name: 'error', params: { code: 404 } })
             })
+
         },
         getPostsNextPage() {
 
