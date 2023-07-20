@@ -50,7 +50,9 @@ export default {
             <div class="row">
                 <div class="col">
                     <div class="card">
-                        <!-- <img src="..." class="card-img-top" alt="..."> -->
+
+                        <img v-if="post.image" :src="store.storageUrl + post.image " class="card-img-top" alt="...">
+                        <img v-else src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="">
                         <div class="card-body">
                             <h5 class="card-title">{{ post.title }}</h5>
                             <p class="card-text">{{ post.content }}</p>

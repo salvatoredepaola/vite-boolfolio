@@ -1,12 +1,10 @@
 <script>
 import axios from "axios";
-import ProjectCard from '../components/ProjectCard.vue';
 import { store } from '../store'
 
 export default {
     name: "PostList",
     components: {
-        ProjectCard
     },
     data() {
         return {
@@ -127,17 +125,16 @@ export default {
 }
 </script>
 <template>
-
     <main>
 
         <!-- LOADING -->
         <section v-if="loading">
-            <div class="container text-center mt-4">loading...</div> 
+            <div class="container text-center mt-4">loading...</div>
         </section>
 
         <!-- LOADING ERROR -->
         <section v-else-if="loadingError">
-            <div class="container text-center mt-4">{{ loadingError }}</div> 
+            <div class="container text-center mt-4">{{ loadingError }}</div>
         </section>
 
         <!-- LOADING DONE -->
@@ -147,13 +144,33 @@ export default {
                 <h1>Post List</h1>
 
                 <!-- POSTS -->
-                <ProjectCard />
+                <div class="row row-cols-1 row-cols-md-2 g-4 mb-4 ">
+                    <div v-for="post in posts" class="col">
+                        <div class="card h-100">
+                            <img :src="store.storageUrl + post.image " class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5>
+                                    <router-link :to="{name:'single-post', params: {id: post.id} }" class="me-2">{{ post.title
+                                                                }}</router-link>
+                                </h5>
+                                <p class="card-text">{{ post.content }}</p>
+                                <p class="card-text">Technology:
+                                <ul v-if="post.technologies" v-for="technology in post.technologies">
+                                    <li>{{ technology.name }}</li>
+                                </ul>
+                                <span v-else>Nessuna tecnologia selezionata</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- NEXT PAGE -->
                 <div class="row">
                     <div class="col d-flex justify-content-center align-items-center">
                         <a @click="getPostsPrevPage()" class="btn btn-primary me-2">Previous page</a>
-                        <a @click="getPostsPage(pageNumber)" v-for="pageNumber in postsTotalPages" class="btn btn-primary me-2">{{ pageNumber }}</a>
+                        <a @click="getPostsPage(pageNumber)" v-for="pageNumber in postsTotalPages"
+                            class="btn btn-primary me-2">{{ pageNumber }}</a>
                         <a @click="getPostsNextPage()" class="btn btn-primary">Next page</a>
                     </div>
                 </div>
@@ -162,9 +179,10 @@ export default {
         </section>
 
     </main>
-
 </template>
 
 <style scoped>
-
+a {
+    color: black;
+}
 </style>
