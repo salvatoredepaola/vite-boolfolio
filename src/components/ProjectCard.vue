@@ -1,17 +1,19 @@
 <script>
 import axios from "axios";
+import { store } from '../store'
+
 export default {
     name: 'ProjectCard',
     data() {
         return {
-            apiUrl: "http://localhost:8000/api/",
+            store,
             posts: [],
         }
     },
     methods: {
         getPosts() {
             this.loading = true;
-            axios.get(this.apiUrl + "posts").then(response => {
+            axios.get(this.store.apiUrl + "posts").then(response => {
                 // console.log(response.data.results);
                 // this.posts = response.data.results; //non paginate
                 this.posts = response.data.results.data; // paginate
@@ -40,7 +42,9 @@ export default {
         <div class="card h-100">
             <!-- <img src="..." class="card-img-top" alt="..."> -->
             <div class="card-body">
-                <h5 class="card-title">{{ post.title }}</h5>
+                <h5>
+                    <router-link :to="{name:'single-post', params: {id: post.id} }" class="me-2">{{ post.title }}</router-link>
+                </h5>
                 <p class="card-text">{{ post.content }}</p>
                 <p class="card-text">Technology:
                     <ul v-if="post.technologies" v-for="technology in post.technologies">
@@ -56,5 +60,7 @@ export default {
 </template>
 
 <style scoped>
-
+a {
+    color: black;
+}
 </style>
