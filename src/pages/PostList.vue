@@ -168,10 +168,9 @@ export default {
                 <!-- NEXT PAGE -->
                 <div class="row">
                     <div class="col d-flex justify-content-center align-items-center">
-                        <a @click="getPostsPrevPage()" class="btn btn-primary me-2">Previous page</a>
-                        <a @click="getPostsPage(pageNumber)" v-for="pageNumber in postsTotalPages"
-                            class="btn btn-primary me-2">{{ pageNumber }}</a>
-                        <a @click="getPostsNextPage()" class="btn btn-primary">Next page</a>
+                        <a @click="getPostsPrevPage()" class="text-light btn btn-primary me-2">Previous page</a>
+                        <a @click="getPostsPage(pageNumber)" v-for="pageNumber in postsTotalPages" class="text-light  btn btn-primary me-2">{{ pageNumber }}</a>
+                        <a @click="getPostsNextPage()" class="text-light btn btn-primary">Next page</a>
                     </div>
                 </div>
             </div>
