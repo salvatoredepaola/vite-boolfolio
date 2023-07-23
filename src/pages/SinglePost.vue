@@ -21,7 +21,7 @@ export default {
                 console.log(response.data);
                 this.post = response.data.results;
                 this.loading = false;
-            }).catch(err=>{
+            }).catch(err => {
                 this.loading = false;
                 this.loadingError = err.message;
                 this.$router.push({ name: 'error', params: { code: 404 } })
@@ -30,14 +30,13 @@ export default {
         },
     },
     mounted() {
-        this.getPost( this.$route.params.id )
+        this.getPost(this.$route.params.id)
     }
 }
 
 </script>
 
 <template>
-
     <section v-if="post">
         <div class="container">
             <div class="row">
@@ -51,15 +50,15 @@ export default {
                 <div class="col">
                     <div class="card">
 
-                        <img :src="store.storageUrl + post.image " class="card-img-top" alt="...">
+                        <img :src="store.storageUrl + post.image" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ post.title }}</h5>
                             <p class="card-text">{{ post.content }}</p>
                             <p class="card-text">Technology:
-                                <ul v-if="post.technologies" v-for="technology in post.technologies">
-                                    <li>{{ technology.name }}</li>
-                                </ul>
-                                <span v-else>Nessuna tecnologia selezionata</span>
+                            <ul v-if="post.technologies" v-for="technology in post.technologies">
+                                <li>{{ technology.name }}</li>
+                            </ul>
+                            <span v-else>Nessuna tecnologia selezionata</span>
                             </p>
                         </div>
                     </div>
@@ -69,9 +68,6 @@ export default {
 
 
     </section>
-
 </template>
 
-<style>
-
-</style>
+<style></style>

@@ -27,7 +27,7 @@ export default {
                 this.postsCurrentPage = response.data.results.current_page;
                 this.postsTotalPages = response.data.results.last_page;
                 this.loading = false;
-            }).catch(err=>{
+            }).catch(err => {
                 this.loading = false;
                 // this.loadingError = "errore nel caricamento dei dati";
                 this.loadingError = err.message;
@@ -38,7 +38,7 @@ export default {
         },
         getPostsNextPage() {
 
-            if(this.postsCurrentPage < this.postsTotalPages) {
+            if (this.postsCurrentPage < this.postsTotalPages) {
 
                 let config = {
                     params: {
@@ -54,7 +54,7 @@ export default {
                     this.postsCurrentPage = response.data.results.current_page;
                     this.postsTotalPages = response.data.results.last_page;
                     this.loading = false
-                }).catch(err=>{
+                }).catch(err => {
                     this.loading = false;
                     // this.loadingError = "errore nel caricamento dei dati";
                     this.loadingError = err.message;
@@ -64,14 +64,15 @@ export default {
         },
         getPostsPrevPage() {
 
-            if(this.postsCurrentPage > 1) {
-            
+
+            if (this.postsCurrentPage > 1) {
+
                 let config = {
                     params: {
                         page: (this.postsCurrentPage - 1)
                     }
                 }
-            
+
                 this.loading = true;
                 axios.get(this.store.apiUrl + "posts", config).then(response => {
                     // console.log(response.data.results);
@@ -80,7 +81,7 @@ export default {
                     this.postsCurrentPage = response.data.results.current_page;
                     this.postsTotalPages = response.data.results.last_page;
                     this.loading = false
-                }).catch(err=>{
+                }).catch(err => {
                     this.loading = false;
                     // this.loadingError = "errore nel caricamento dei dati";
                     this.loadingError = err.message;
@@ -90,8 +91,8 @@ export default {
         },
         getPostsPage(pageNumber) {
 
-            if (this.postsCurrentPage == pageNumber ) {
-                
+            if (this.postsCurrentPage == pageNumber) {
+
             } else {
 
                 let config = {
@@ -99,7 +100,7 @@ export default {
                         page: (pageNumber)
                     }
                 }
-            
+
                 this.loading = true;
                 axios.get(this.store.apiUrl + "posts", config).then(response => {
                     // console.log(response.data.results);
@@ -108,7 +109,7 @@ export default {
                     this.postsCurrentPage = response.data.results.current_page;
                     this.postsTotalPages = response.data.results.last_page;
                     this.loading = false
-                }).catch(err=>{
+                }).catch(err => {
                     this.loading = false;
                     // this.loadingError = "errore nel caricamento dei dati";
                     this.loadingError = err.message;
@@ -116,7 +117,7 @@ export default {
                 })
 
             }
-            
+
         }
     },
     mounted() {
@@ -147,11 +148,12 @@ export default {
                 <div class="row row-cols-1 row-cols-md-2 g-4 mb-4 ">
                     <div v-for="post in posts" class="col">
                         <div class="card h-100">
-                            <img :src="store.storageUrl + post.image " class="card-img-top" alt="...">
+                            <img :src="store.storageUrl + post.image" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5>
-                                    <router-link :to="{name:'single-post', params: {id: post.id} }" class="me-2">{{ post.title
-                                                                }}</router-link>
+                                    <router-link :to="{ name: 'single-post', params: { id: post.id } }" class="me-2">{{
+                                        post.title
+                                    }}</router-link>
                                 </h5>
                                 <p class="card-text">{{ post.content }}</p>
                                 <p class="card-text">Technology:
@@ -169,7 +171,8 @@ export default {
                 <div class="row">
                     <div class="col d-flex justify-content-center align-items-center">
                         <a @click="getPostsPrevPage()" class="text-light btn btn-primary me-2">Previous page</a>
-                        <a @click="getPostsPage(pageNumber)" v-for="pageNumber in postsTotalPages" class="text-light  btn btn-primary me-2">{{ pageNumber }}</a>
+                        <a @click="getPostsPage(pageNumber)" v-for="pageNumber in postsTotalPages"
+                            class="text-light  btn btn-primary me-2">{{ pageNumber }}</a>
                         <a @click="getPostsNextPage()" class="text-light btn btn-primary">Next page</a>
                     </div>
                 </div>
